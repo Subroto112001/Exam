@@ -7,12 +7,12 @@ import { getDatabase, onValue, ref, update } from "firebase/database";
 
 const Home = () => {
   const auth = getAuth();
-  const db = getDatabase()
+  const db = getDatabase();
   const navigate = useNavigate();
   const [isVerfied, setisVerfied] = useState(false);
 
   const { theme, toggleTheme } = useContext(ThemeContext);
-const [bloggerdata, setbloggerdata]= useState({})
+  const [bloggerdata, setbloggerdata] = useState({});
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user && user.emailVerified) {
@@ -66,33 +66,28 @@ const [bloggerdata, setbloggerdata]= useState({})
     document.body.appendChild(script);
   }, []);
 
+  /**
+   *
+   * todo : here we will feth user data
+   * */
 
+  useEffect(() => {
+    const fetchdata = () => {
+      const UseRef = ref(db, "users/");
+      onValue(UseRef, (snapshot) => {
+        let bloggerBlankinfo = null;
 
-/**
- * 
- * todo : here we will feth user data
- * */
-  
-  
-useEffect(() => {
-  const fetchdata = () => {
-    const UseRef = ref(db, "users/");
-    onValue(UseRef, (snapshot) => {
-      let bloggerBlankinfo = null;
-
-      snapshot.forEach((item) => {
-        if (item.val().userUid === auth.currentUser.uid) {
-          bloggerBlankinfo = { ...item.val(), userKey: item.key };
-        }
+        snapshot.forEach((item) => {
+          if (item.val().userUid === auth.currentUser.uid) {
+            bloggerBlankinfo = { ...item.val(), userKey: item.key };
+          }
+        });
+        setbloggerdata(bloggerBlankinfo);
       });
-      setbloggerdata(bloggerBlankinfo);
-    });
-  };
-  fetchdata();
-}, []);
- console.log(bloggerdata);
- 
-
+    };
+    fetchdata();
+  }, []);
+  console.log(bloggerdata);
 
   return (
     <div className="container bg-BGWhite">
@@ -108,7 +103,9 @@ useEffect(() => {
                 />
               </picture>
             </div>
-            <h3 className="text-xl mt-2 font-bold">{bloggerdata.username}</h3>
+            <h3 className="text-xl text-blue-400 mt-2 font-bold">
+              {bloggerdata.username}
+            </h3>
           </div>
           <button
             className="py-1 px-2 mt-2 bg-blue-400 rounded text-white cursor-pointer "

@@ -36,7 +36,7 @@ const Navbar = () => {
                   ? "text-black"
                   : isActive
                   ? " text-red-600"
-                  : "text-black"
+                  : "text-blue-500"
               }
             >
               <li className="text-[20px] font-medium">{item.name}</li>
