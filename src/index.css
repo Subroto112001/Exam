@@ -19,3 +19,7 @@
   --color-BGWhite: var(--bg-white);
   
 }
+.container{
+  padding-left:10px ;
+  padding-right:10px ;
+}
