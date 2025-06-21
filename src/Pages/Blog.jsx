@@ -154,7 +154,7 @@ const handleDeleteBlog = (blogKey) => {
         </div>
 
         {/* dark mode  night mode button */}
-       
+
         {/* dark mode  night mode button */}
       </div>
       <div className="flex flex-col justify-center items-center mt-4">
@@ -196,31 +196,33 @@ const handleDeleteBlog = (blogKey) => {
         </div>
       </div>
       {/* blog container */}
-      <div className="mt-[50px] flex flex-col gap-4">
-        {blogList.map((blog) => (
-          <div key={blog.blogKey} className="w-[400px] border-2 rounded p-2">
-            <div className="flex gap-2">
-              <div className="w-[100px] h-[100px] ">
-                <picture>
-                  <img
-                    src={blog.blogProfile}
-                    alt=""
-                    className="w-full h-full rounded-full"
-                  />
-                </picture>
-              </div>{" "}
-              <p>{blog.BlogPost}</p>
+      <div className="mt-[50px] flex gap-4">
+        <div>
+          {blogList.map((blog) => (
+            <div key={blog.blogKey} className="w-[400px] border-2 rounded p-2">
+              <div className="flex gap-2">
+                <div className="w-[100px] h-[100px] ">
+                  <picture>
+                    <img
+                      src={blog.blogProfile}
+                      alt=""
+                      className="w-full h-full rounded-full"
+                    />
+                  </picture>
+                </div>{" "}
+                <p>{blog.BlogPost}</p>
+              </div>
+              <p className="text-sm text-gray-500">By: {blog.Author}</p>
+              <p className="text-xs text-gray-400">{blog.createaDAte}</p>
+              <button
+                className="bg-blue-400 px-3 py-1 rounded cursor-pointer mt-2"
+                onClick={() => handleDeleteBlog(blog.blogKey)}
+              >
+                Delete
+              </button>
             </div>
-            <p className="text-sm text-gray-500">By: {blog.Author}</p>
-            <p className="text-xs text-gray-400">{blog.createaDAte}</p>
-            <button
-              className="bg-blue-400 px-3 py-1 rounded cursor-pointer mt-2"
-              onClick={() => handleDeleteBlog(blog.blogKey)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       ;{/* blog container */}
     </div>
