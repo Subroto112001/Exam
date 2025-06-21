@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.light {
+ 
+  --bg-white: #ffffff;
+ 
+ 
+}
+.dark {
+  
+
+
+  --bg-white: #090d1f;
+ 
+
+}
+@theme {
+ 
+  --color-BGWhite: var(--bg-white);
+  
+}
